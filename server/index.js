@@ -13,7 +13,7 @@ const PORT= process.env.PORT||8080
 const schemaData = mongoose.Schema({
     name:String,
     email: String,
-    mobile: Number,
+    mobile: String,
 },{
     timestamps:true  
     // Timestamps save the current time of the document created and also when it was updated in form of a Date by turning it true
@@ -46,8 +46,8 @@ app.post("/create", async (req,res)=>{
 app.put("/update",async(req,res)=>{
     console.log(req.body);
 
-    const {id,...rest}=req.body
-    const data = await userModel.updateOne({id:req.body.id},rest)
+    const {_id,...rest}=req.body
+    const data = await userModel.updateOne({_id:_id},rest)
     
     res.send({success:true,message:"data updated successfully",data:data})
 })
